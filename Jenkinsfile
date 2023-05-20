@@ -2,7 +2,9 @@ pipeline {
     agent any
     
     parameters {
-        choice(name: 'ENVIRONMENT', defaultvalue: ['dev', 'qa', 'prod'], description: 'Application Environments to deploy'
+        string(name: 'name', defaultValue: 'first-pipeline', description: 'first-pipeline')
+        choice(name: 'env_name', choices: ['dev', 'qa', 'prod'], description: 'Application Environments to deploy'
+        booleanParam(name: 'create_ec2', defaultValue: false, description: 'whether or not to create ec2')       
                }
 
     stages {
@@ -13,7 +15,7 @@ pipeline {
         // }
         stage('Terraform Init') {
             steps {
-                sh "echo 'terraform init'"
+                sh "echo 'deploying into ${env_name}'"
             }
         }
         stage('Terraform Plan'){
@@ -23,7 +25,7 @@ pipeline {
         }
         stage('Terraform Apply'){
             steps {
-                sh "echo 'terraform apply'"
+                sh "terraform apply"
             }
         }
     }
