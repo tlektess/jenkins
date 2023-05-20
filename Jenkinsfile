@@ -3,7 +3,7 @@ pipeline {
     
     parameters {
         string(name: 'name', defaultValue: 'first-pipeline', description: 'first-pipeline')
-        choice(name: 'env_name', choices: ['dev', 'qa', 'prod'], description: 'Application Environments to deploy'
+        choice(name: 'env_name', choices: ['dev', 'qa', 'prod'], description: 'Application Environments to deploy')
         booleanParam(name: 'create_ec2', defaultValue: false, description: 'whether or not to create ec2')       
                }
 
