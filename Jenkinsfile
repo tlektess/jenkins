@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    parameters {
+        choice(name: 'ENVIRONMENT', defaultvalue: ['dev', 'qa', 'prod'], description: 'Application Environments to deploy'
+               }
 
     stages {
         // stage('SCM Checkout'){
